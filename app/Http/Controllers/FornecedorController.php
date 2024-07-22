@@ -6,37 +6,31 @@ use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $fornecedores = [
-            0 =>  [
-                'nome' => 'fornecedor 1',
+            0 => [
+                'nome' => 'Fornecedor 1',
                 'status' => 'N',
                 'cnpj' => '0',
-                'ddd' => '11',
+                'ddd' => '44', 
                 'telefone' => '0000-0000'
             ],
-            1 =>  [
-                'nome' => 'fornecedor 2',
+            1 => [
+                'nome' => 'Fornecedor 2',
                 'status' => 'S',
                 'cnpj' => null,
-                'ddd' => '44',
+                'ddd' => '85', 
                 'telefone' => '0000-0000'
             ],
-            2 =>  [
-                'nome' => 'fornecedor 3',
+            2 => [
+                'nome' => 'Fornecedor 2',
                 'status' => 'S',
                 'cnpj' => null,
-                'ddd' => '45',
+                'ddd' => '32',
                 'telefone' => '0000-0000'
             ]
         ];
 
-        $msg = isset($fornecedores[1]['cnpj']) ? 'CNPJ informado': 'CNPJ não informado';
-        $msg;
-        return view('app.fornecedor.index',  [
-            'fornecedores' => $fornecedores,
-            'msg'=> $msg
-        ]);
+        return view('app.fornecedor.index', compact('fornecedores'));
     }
 }

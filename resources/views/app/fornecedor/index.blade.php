@@ -1,22 +1,44 @@
-<h3>Fornecedor teste</h3>
+<h3>Fornecedor</h3>
 
-@php 
- /*
-    if(){
-
-    }
- */   
-@endphp    
+@php
+    /*
+    if(empty($variavel)) {} //retornar true se a variável estiver vazia
+    - ''
+    - 0
+    - 0.0
+    - '0'z
+    - null
+    - false
+    - array()
+    - $var
+    */
+@endphp
 
 @isset($fornecedores)
-    @for($i = 0; isset($fornecedores[$i]); $i++)
-      Fornecedor: {{ $fornecedores[$i]['nome'] }}
-      <br />
-      Status: {{ $fornecedores[$i]['status'] }}
-      <br />
-      CNPJ: {{ $fornecedores[$i]['cnpj'] ?? 'Dado não foi preenchido' }}
-      <br /> 
-      Telefone: ({{ $fornecedores[$i]['ddd'] ?? 'Dado não foi preenchido' }} {{ $fornecedores[$i]['telefone'] ?? 'Dado não foi preenchido' }})
-      <hr>
-    @endfor
+
+    @forelse($fornecedores as $indice => $fornecedor)
+        Iteração atual: {{ $loop->iteration }}
+        <br>
+        Fornecedor: {{ $fornecedor['nome'] }}
+        <br>
+        Status: {{ $fornecedor['status'] }}
+        <br>
+        CNPJ: {{ $fornecedor['cnpj'] ?? '' }}
+        <br>
+        Telefone: ({{ $fornecedor['ddd'] ?? '' }}) {{ $fornecedor['telefone'] ?? '' }}
+        <br>
+        @if ($loop->first)
+            Primeira iteração no loop
+
+            <br>
+            Total de registros: {{ $loop->count }}
+        @endif
+
+        @if ($loop->last)
+            Última iteração no loop
+        @endif
+        <hr>
+    @empty
+        Não existem fornecedores cadastrados!!!
+    @endforelse
 @endisset
